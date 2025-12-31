@@ -1,442 +1,363 @@
 <!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ColourSplash</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ColourSplash</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: #070a12;
+      color: rgba(255,255,255,.92);
+    }
 
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-        }
+    header{
+      padding: 18px 18px 44px;
+      background:
+        radial-gradient(1200px 520px at 20% 15%, rgba(255, 115, 230, .35), transparent 60%),
+        radial-gradient(900px 450px at 80% 25%, rgba(90, 255, 210, .25), transparent 60%),
+        linear-gradient(135deg, #6a11cb 0%, #2575fc 40%, #00d4ff 100%);
+      color: #fff;
+    }
 
-        body {
-            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-            background: #070a12;
-            color: rgba(255, 255, 255, .92);
-        }
+    .nav{
+      max-width: 1050px;
+      margin: 0 auto;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 6px;
+    }
 
-        header {
-            padding: 18px 18px 44px;
-            background:
-                radial-gradient(1200px 520px at 20% 15%, rgba(255, 115, 230, .35), transparent 60%),
-                radial-gradient(900px 450px at 80% 25%, rgba(90, 255, 210, .25), transparent 60%),
-                linear-gradient(135deg, #6a11cb 0%, #2575fc 40%, #00d4ff 100%);
-            color: #fff;
-        }
+    .logo{
+      color: white;
+      text-decoration: none;
+      font-weight: 900;
+      letter-spacing: .2px;
+    }
 
-        .nav {
-            max-width: 1050px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            padding: 10px 6px;
-        }
+    .links a{
+      color: rgba(255,255,255,.92);
+      text-decoration: none;
+      margin-left: 14px;
+      font-weight: 700;
+    }
+    .links a:hover{ text-decoration: underline; }
 
-        .logo {
-            color: white;
-            text-decoration: none;
-            font-weight: 900;
-            letter-spacing: .2px;
-        }
+    .hero{
+      max-width: 1050px;
+      margin: 40px auto 0;
+      padding: 10px 6px 0;
+    }
 
-        .links a {
-            color: rgba(255, 255, 255, .92);
-            text-decoration: none;
-            margin-left: 14px;
-            font-weight: 700;
-        }
+    .tag{
+      display:inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.18);
+      font-weight: 800;
+    }
 
-        .links a:hover {
-            text-decoration: underline;
-        }
+    h1{
+      margin: 14px 0 10px;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.05;
+    }
 
-        .hero {
-            max-width: 1050px;
-            margin: 40px auto 0;
-            padding: 10px 6px 0;
-        }
+    .sub{
+      margin: 0 0 14px;
+      max-width: 60ch;
+      color: rgba(255,255,255,.92);
+    }
 
-        .tag {
-            display: inline-block;
-            padding: 6px 10px;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, .14);
-            border: 1px solid rgba(255, 255, 255, .18);
-            font-weight: 800;
-        }
+    .welcome{
+      margin: 0 0 14px;
+      display: inline-block;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(0,0,0,.18);
+      border: 1px solid rgba(255,255,255,.16);
+      font-weight: 900;
+      letter-spacing: .2px;
+    }
 
-        h1 {
-            margin: 14px 0 10px;
-            font-size: clamp(2rem, 4vw, 3.2rem);
-            line-height: 1.05;
-        }
+    .hero-media{
+      margin-top: 14px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.16);
+      box-shadow: 0 12px 30px rgba(0,0,0,.35);
+      background: rgba(0,0,0,.18);
+    }
+    .hero-media img{
+      width: 100%;
+      height: clamp(240px, 30vw, 380px);
+      object-fit: cover;
+      display:block;
+    }
 
-        .sub {
-            margin: 0 0 14px;
-            max-width: 60ch;
-            color: rgba(255, 255, 255, .92);
-        }
+    .cta-row{ display:flex; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
 
-        .welcome {
-            margin: 0 0 14px;
-            display: inline-block;
-            padding: 10px 12px;
-            border-radius: 14px;
-            background: rgba(0, 0, 0, .18);
-            border: 1px solid rgba(255, 255, 255, .16);
-            font-weight: 900;
-            letter-spacing: .2px;
-        }
+    .btn{
+      display:inline-block;
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: 0;
+      cursor: pointer;
+      font-weight: 900;
+      text-decoration: none;
+      color: #061018;
+    }
 
-        .hero-media {
-            margin-top: 14px;
-            border-radius: 18px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, .16);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, .35);
-            background: rgba(0, 0, 0, .18);
-        }
+    .anim-bg-gradient{
+      background: linear-gradient(120deg, #ff00cc, #3333ff, #00d4ff, #00ff87);
+      background-size: 200% 100%;
+      background-position: 100% 0;
+      transition: background-position .5s;
+    }
+    .anim-bg-gradient:hover{ background-position: 0 0; }
 
-        .hero-media img {
-            width: 100%;
-            height: clamp(240px, 30vw, 380px);
-            object-fit: cover;
-            display: block;
-        }
+    .btn-ghost{
+      background: rgba(255,255,255,.14);
+      color: white;
+      border: 1px solid rgba(255,255,255,.22);
+    }
+    .btn-ghost:hover{ background: rgba(255,255,255,.20); }
 
-        .cta-row {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-top: 14px;
-        }
+    main{
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 34px 18px 60px;
+    }
 
-        .btn {
-            display: inline-block;
-            padding: 12px 16px;
-            border-radius: 999px;
-            border: 0;
-            cursor: pointer;
-            font-weight: 900;
-            text-decoration: none;
-            color: #061018;
-        }
+    section{
+      margin-top: 34px;
+      padding: 24px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      border: 1px solid rgba(255,255,255,.10);
+    }
 
-        .anim-bg-gradient {
-            background: linear-gradient(120deg, #ff00cc, #3333ff, #00d4ff, #00ff87);
-            background-size: 200% 100%;
-            background-position: 100% 0;
-            transition: background-position .5s;
-        }
+    h2{ margin: 0 0 12px; font-size: 1.4rem; }
+    .muted{ margin: 0 0 14px; color: rgba(255,255,255,.70); }
 
-        .anim-bg-gradient:hover {
-            background-position: 0 0;
-        }
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
 
-        .btn-ghost {
-            background: rgba(255, 255, 255, .14);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, .22);
-        }
+    .card{
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: 0 10px 25px rgba(0,0,0,.25);
+      transform: translateY(0);
+      transition: transform .18s ease, box-shadow .18s ease;
+      overflow: hidden;
+    }
+    .card:hover{ transform: translateY(-4px); box-shadow: 0 14px 35px rgba(0,0,0,.35); }
 
-        .btn-ghost:hover {
-            background: rgba(255, 255, 255, .20);
-        }
+    .card-img{
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 14px;
+      display: block;
+      margin-bottom: 10px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+    }
 
-        main {
-            max-width: 1050px;
-            margin: 0 auto;
-            padding: 34px 18px 60px;
-        }
+    .card h3{ margin: 0 0 8px; }
+    .card p{ margin: 0; color: rgba(255,255,255,.88); }
 
-        section {
-            margin-top: 34px;
-            padding: 24px;
-            border-radius: 18px;
-            background: linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .03));
-            border: 1px solid rgba(255, 255, 255, .10);
-        }
+    .card-a{ background: linear-gradient(135deg, #ff4d6d, #ffb703); color: #1a1020; }
+    .card-a p{ color: rgba(10,10,20,.85); }
 
-        h2 {
-            margin: 0 0 12px;
-            font-size: 1.4rem;
-        }
+    .card-b{ background: linear-gradient(135deg, #00c6ff, #0072ff); }
+    .card-c{ background: linear-gradient(135deg, #b5179e, #7209b7, #3a0ca3); }
 
-        .muted {
-            margin: 0 0 14px;
-            color: rgba(255, 255, 255, .70);
-        }
+    .photo-grid{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 14px;
-        }
+    .photo{
+      margin: 0;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      box-shadow: 0 10px 25px rgba(0,0,0,.25);
+      transform: translateY(0);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .photo:hover{ transform: translateY(-4px); box-shadow: 0 14px 35px rgba(0,0,0,.35); }
 
-        .card {
-            padding: 14px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, .14);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, .25);
-            transform: translateY(0);
-            transition: transform .18s ease, box-shadow .18s ease;
-            overflow: hidden;
-        }
+    .photo img{
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+      background: rgba(0,0,0,.18);
+    }
 
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 14px 35px rgba(0, 0, 0, .35);
-        }
+    figcaption{
+      padding: 10px 12px;
+      font-weight: 900;
+      color: rgba(255,255,255,.88);
+    }
 
-        .card-img {
-            width: 100%;
-            height: 140px;
-            object-fit: cover;
-            border-radius: 14px;
-            display: block;
-            margin-bottom: 10px;
-            border: 1px solid rgba(255, 255, 255, .14);
-            background: rgba(0, 0, 0, .18);
-        }
+    .form{ display:grid; gap: 12px; max-width: 520px; }
+    label{ display:grid; gap: 6px; font-weight: 800; }
+    input, textarea{
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.25);
+      color: rgba(255,255,255,.92);
+      outline: none;
+    }
+    input:focus, textarea:focus{ border-color: rgba(0, 212, 255, .7); }
 
-        .card h3 {
-            margin: 0 0 8px;
-        }
+    footer{
+      padding: 18px;
+      text-align:center;
+      color: rgba(255,255,255,.65);
+    }
 
-        .card p {
-            margin: 0;
-            color: rgba(255, 255, 255, .88);
-        }
-
-        .card-a {
-            background: linear-gradient(135deg, #ff4d6d, #ffb703);
-            color: #1a1020;
-        }
-
-        .card-a p {
-            color: rgba(10, 10, 20, .85);
-        }
-
-        .card-b {
-            background: linear-gradient(135deg, #00c6ff, #0072ff);
-        }
-
-        .card-c {
-            background: linear-gradient(135deg, #b5179e, #7209b7, #3a0ca3);
-        }
-
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 14px;
-        }
-
-        .photo {
-            margin: 0;
-            border-radius: 18px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, .14);
-            background: rgba(255, 255, 255, .04);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, .25);
-            transform: translateY(0);
-            transition: transform .18s ease, box-shadow .18s ease;
-        }
-
-        .photo:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 14px 35px rgba(0, 0, 0, .35);
-        }
-
-        .photo img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            display: block;
-            background: rgba(0, 0, 0, .18);
-        }
-
-        figcaption {
-            padding: 10px 12px;
-            font-weight: 900;
-            color: rgba(255, 255, 255, .88);
-        }
-
-        .form {
-            display: grid;
-            gap: 12px;
-            max-width: 520px;
-        }
-
-        label {
-            display: grid;
-            gap: 6px;
-            font-weight: 800;
-        }
-
-        input,
-        textarea {
-            padding: 12px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, .18);
-            background: rgba(0, 0, 0, .25);
-            color: rgba(255, 255, 255, .92);
-            outline: none;
-        }
-
-        input:focus,
-        textarea:focus {
-            border-color: rgba(0, 212, 255, .7);
-        }
-
-        footer {
-            padding: 18px;
-            text-align: center;
-            color: rgba(255, 255, 255, .65);
-        }
-
-        @media (max-width: 900px) {
-
-            .grid,
-            .photo-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .links {
-                display: none;
-            }
-        }
-    </style>
+    @media (max-width: 900px){
+      .grid, .photo-grid{ grid-template-columns: 1fr; }
+      .links{ display:none; }
+    }
+  </style>
 </head>
 
 <body>
-    <header>
-        <nav class="nav">
-            <a class="logo" href="#">ColourSplash</a>
-            <div class="links">
-                <a href="#features">Features</a>
-                <a href="#photos">Photos</a>
-                <a href="#contact">Contact</a>
-            </div>
-        </nav>
+  <header>
+    <nav class="nav">
+      <a class="logo" href="#">ColourSplash</a>
+      <div class="links">
+        <a href="#features">Features</a>
+        <a href="#photos">Photos</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
 
-        <div class="hero">
-            <p class="tag">Bright • Modern • Simple</p>
-            <h1>Colourful website with images</h1>
-            <p class="sub">All-in-one HTML file (styles included) + random images that should load.</p>
+    <div class="hero">
+      <p class="tag">Bright • Modern • Simple</p>
+      <h1>Colourful website with images</h1>
+      <p class="sub">All-in-one HTML file (styles included) + random images that should load.</p>
 
-            <!-- NEW TEXT -->
-            <p class="welcome">Hello and Thanks for visiting</p>
+      <!-- NEW TEXT -->
+      <p class="welcome">Hello and Thanks for visiting</p>
 
-            <div class="hero-media">
-                <img src="https://picsum.photos/1400/650?random=99" alt="Hero random image">
-            </div>
+      <div class="hero-media">
+        <img src="https://picsum.photos/1400/650?random=99" alt="Hero random image">
+      </div>
 
-            <div class="cta-row">
-                <a class="btn anim-bg-gradient" href="#photos">See photos</a>
-                <a class="btn btn-ghost" href="#contact">Contact</a>
-            </div>
-        </div>
-    </header>
+      <div class="cta-row">
+        <a class="btn anim-bg-gradient" href="#photos">See photos</a>
+        <a class="btn btn-ghost" href="#contact">Contact</a>
+      </div>
+    </div>
+  </header>
 
-    <main>
-        <section id="features">
-            <h2>Features</h2>
+  <main>
+    <section id="features">
+      <h2>Features</h2>
 
-            <div class="grid">
-                <article class="card card-a">
-                    <img class="card-img" src="https://picsum.photos/800/520?random=1" alt="Feature image 1" loading="lazy">
-                    <h3>Bold colour</h3>
-                    <p>Bright gradients and readable text.</p>
-                </article>
+      <div class="grid">
+        <article class="card card-a">
+          <img class="card-img" src="https://picsum.photos/800/520?random=1" alt="Feature image 1" loading="lazy">
+          <h3>Bold colour</h3>
+          <p>Bright gradients and readable text.</p>
+        </article>
 
-                <article class="card card-b">
-                    <img class="card-img" src="https://picsum.photos/800/520?random=2" alt="Feature image 2" loading="lazy">
-                    <h3>Responsive</h3>
-                    <p>Cards wrap nicely on mobile.</p>
-                </article>
+        <article class="card card-b">
+          <img class="card-img" src="https://picsum.photos/800/520?random=2" alt="Feature image 2" loading="lazy">
+          <h3>Responsive</h3>
+          <p>Cards wrap nicely on mobile.</p>
+        </article>
 
-                <article class="card card-c">
-                    <img class="card-img" src="https://picsum.photos/800/520?random=3" alt="Feature image 3" loading="lazy">
-                    <h3>Hover effects</h3>
-                    <p>Cards lift slightly when hovered.</p>
-                </article>
-            </div>
-        </section>
+        <article class="card card-c">
+          <img class="card-img" src="https://picsum.photos/800/520?random=3" alt="Feature image 3" loading="lazy">
+          <h3>Hover effects</h3>
+          <p>Cards lift slightly when hovered.</p>
+        </article>
+      </div>
+    </section>
 
-        <section id="photos">
-            <h2>Photo grid</h2>
-            <p class="muted">Refresh to see different images.</p>
+    <section id="photos">
+      <h2>Photo grid</h2>
+      <p class="muted">Refresh to see different images.</p>
 
-            <div class="photo-grid">
-                <figure class="photo">
-                    <img src="https://picsum.photos/900/700?random=11" alt="Random photo 1" loading="lazy">
-                    <figcaption>Photo 1</figcaption>
-                </figure>
+      <div class="photo-grid">
+        <figure class="photo">
+          <img src="https://picsum.photos/900/700?random=11" alt="Random photo 1" loading="lazy">
+          <figcaption>Photo 1</figcaption>
+        </figure>
 
-                <figure class="photo">
-                    <img src="https://picsum.photos/900/700?random=12" alt="Random photo 2" loading="lazy">
-                    <figcaption>Photo 2</figcaption>
-                </figure>
+        <figure class="photo">
+          <img src="https://picsum.photos/900/700?random=12" alt="Random photo 2" loading="lazy">
+          <figcaption>Photo 2</figcaption>
+        </figure>
 
-                <figure class="photo">
-                    <img src="https://picsum.photos/900/700?random=13" alt="Random photo 3" loading="lazy">
-                    <figcaption>Photo 3</figcaption>
-                </figure>
+        <figure class="photo">
+          <img src="https://picsum.photos/900/700?random=13" alt="Random photo 3" loading="lazy">
+          <figcaption>Photo 3</figcaption>
+        </figure>
 
-                <figure class="photo">
-                    <img src="https://picsum.photos/900/700?random=14" alt="Random photo 4" loading="lazy">
-                    <figcaption>Photo 4</figcaption>
-                </figure>
+        <figure class="photo">
+          <img src="https://picsum.photos/900/700?random=14" alt="Random photo 4" loading="lazy">
+          <figcaption>Photo 4</figcaption>
+        </figure>
 
-                <figure class="photo">
-                    <img src="https://picsum.photos/900/700?random=15" alt="Random photo 5" loading="lazy">
-                    <figcaption>Photo 5</figcaption>
-                </figure>
+        <figure class="photo">
+          <img src="https://picsum.photos/900/700?random=15" alt="Random photo 5" loading="lazy">
+          <figcaption>Photo 5</figcaption>
+        </figure>
 
-                <figure class="photo">
-                    <img src="https://picsum.photos/900/700?random=16" alt="Random photo 6" loading="lazy">
-                    <figcaption>Photo 6</figcaption>
-                </figure>
-            </div>
-        </section>
+        <figure class="photo">
+          <img src="https://picsum.photos/900/700?random=16" alt="Random photo 6" loading="lazy">
+          <figcaption>Photo 6</figcaption>
+        </figure>
+      </div>
+    </section>
 
-        <section id="contact">
-            <h2>Contact</h2>
+    <section id="contact">
+      <h2>Contact</h2>
 
-            <form class="form">
-                <label>
-                    Name
-                    <input type="text" placeholder="Your name" />
-                </label>
+      <form class="form">
+        <label>
+          Name
+          <input type="text" placeholder="Your name" />
+        </label>
 
-                <label>
-                    Email
-                    <input type="email" placeholder="you@example.com" />
-                </label>
+        <label>
+          Email
+          <input type="email" placeholder="you@example.com" />
+        </label>
 
-                <label>
-                    Message
-                    <textarea rows="4" placeholder="Say hello..."></textarea>
-                </label>
+        <label>
+          Message
+          <textarea rows="4" placeholder="Say hello..."></textarea>
+        </label>
 
-                <button class="btn anim-bg-gradient" type="button">Send</button>
-            </form>
-        </section>
-    </main>
+        <button class="btn anim-bg-gradient" type="button">Send</button>
+      </form>
+    </section>
+  </main>
 
-    <footer>
-        <p>Made with HTML + CSS • © 2025</p>
-    </footer>
+  <footer>
+    <p>Made with HTML + CSS • © 2025</p>
+  </footer>
 </body>
-
 </html>
